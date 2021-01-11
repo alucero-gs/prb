@@ -13,10 +13,10 @@ $array = mysqli_fetch_array($consulta);
 if($array['contar']>0){
     $_SESSION['username']=$usuario;
     if($usuario ==$admin){
-        header("location: ../Admin/admin.php");
+        header("location: ../admin/admin.php");
     }
     else if($usuario==$empleado){
-        header("location: ../Empleado/empleado.php");
+        header("location: ../usuario/usuario.php");
     }
     
 }
