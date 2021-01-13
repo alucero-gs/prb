@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="es">
   <head>
-    <title>Registrarse</title>
+    <title>Login</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -71,10 +71,6 @@
                         <a class="nav-link" href="../login/new.php"><img src="../img/create.png" alt="Icono login">Crear cuenta</a>
                     </li>
                   </ul>
-                  <form class="form-inline my-2 my-lg-0">
-                      <input class="form-control mr-sm-2" type="text" placeholder="Buscar en el sitio">
-                      <button class="btn btn-outline-dark my-2 my-sm-0" type="submit">Buscar</button>
-                  </form>
               </div>
           </nav>
       </div>
