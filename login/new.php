@@ -51,6 +51,10 @@
     font-weight: 600;
     text-decoration: none;
 }
+.login-form-2 label{
+    text-align: center;
+    color: #fff;
+}
 
   </style>
   <body>
@@ -82,21 +86,38 @@
       </div>
                 <div class="col-md-6 login-form-2">
                     <h3>Bienvenido a Notichisme!</h3>
-                    <h5>Por favor, inicia sesión</h5>
+                    <h5>Por favor, ingrese lo solicitado</h5>
                     <form>
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Introducir email" value="" />
+                            <label for="">Nombre:</label>
+                            <input type="text" class="form-control" placeholder="Ingresa tu nombre" value="" />
                         </div>
                         <div class="form-group">
-                            <input type="password" class="form-control" placeholder="Introducir contraseña" value="" />
+                            <label for="">Apellidos:</label>
+                            <input type="text" class="form-control" placeholder="Ingresa tus apellidos" value="" />
                         </div>
                         <div class="form-group">
-                            <input type="submit" class="btnSubmit" value="Entrar" />
-                            <input type="new" class="btnSubmit" value="Registrarse" style="text-align: center;" />
+                            <label for="">Edad:</label>
+                            <input type="text" class="form-control" placeholder="Ingresa tu edad" value="" />
                         </div>
                         <div class="form-group">
-
-                            <a href="#" class="ForgetPwd" value="Login">Ha olvidado la contraseña?</a>
+                            <label for="">Email:</label>
+                            <input type="text" class="form-control" placeholder="Ingresa tu email" value="" />
+                        </div>
+                        <div class="form-group">
+                            <label for="">Username:</label>
+                            <input type="text" class="form-control" placeholder="Ingresa tu username" value="" />
+                        </div>
+                        <div class="form-group">
+                            <label for="">Contraseña:</label>
+                            <input type="password" class="form-control" placeholder="Ingresa tu contraseña" value="" />
+                        </div>
+                        <div class="form-group">
+                            <label for="">Confirmación de contraseña:</label>
+                            <input type="password" class="form-control" placeholder="Vuelve a ingresar tu contraseña" value="" />
+                        </div>
+                        <div class="form-group">
+                            <input type="new" class="btnSubmit" value="Registrarme  " style="text-align: center;" />
                         </div>
                     </form>
                 </div>
