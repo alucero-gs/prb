@@ -7,7 +7,7 @@ $usuario='juangg';
 <!doctype html>
 <html lang="es">
 <head>
-    <title>Actualizar datos</title>
+    <title>Actualizar usuario</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -32,7 +32,7 @@ $usuario='juangg';
               <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
                   aria-expanded="false" aria-label="Toggle navigation"></button>
               <div class="collapse navbar-collapse" id="collapsibleNavId">
-                  <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+              <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                       <li class="nav-item active">
                           <a class="nav-link" href="../index.html"><img src="../img/home.png" alt="Icono Home">Home <span class="sr-only">(current)</span></a>
                       </li>
@@ -43,10 +43,10 @@ $usuario='juangg';
                           <a class="nav-link" href="../admin/mispubli.php">Mis publicaciones <span class="sr-only">(current)</span></a>
                       </li>
                       <li class="nav-item active">
-                          <a class="nav-link" href="../admin/usuarios.php">Usuarios<span class="sr-only">(current)</span></a>
+                          <a class="nav-link" href="../admin/publicaciones.php">Publicaciones<span class="sr-only">(current)</span></a>
                       </li>
                       <li class="nav-item active">
-                          <a class="nav-link" href="../admin/moderadores.php">Moderadores<span class="sr-only">(current)</span></a>
+                          <a class="nav-link" href="../admin/publicaciones.php">Moderadores<span class="sr-only">(current)</span></a>
                       </li>
                       <li class="nav-item active">
                         <a class="nav-link" href="../login/new.php">Log Out <span class="sr-only">(current)</span></a>
@@ -59,28 +59,29 @@ $usuario='juangg';
       </div>
 <div class="container">
 		<div class="content">
-			<h2>Datos de la publicación&raquo; Editar datos</h2>
+			<h2>Datos del usuario &raquo; Editar datos</h2>
 			<hr />
 			
 			<?php
 			// escaping, additionally removing everything that could be (html/javascript-) code
 			$nik = mysqli_real_escape_string($con,(strip_tags($_GET["nik"],ENT_QUOTES)));
-			$sql = mysqli_query($con, "SELECT * FROM publicacion WHERE id='$nik'");
+			$sql = mysqli_query($con, "SELECT * FROM usuario WHERE id='$nik'");
 			if(mysqli_num_rows($sql) == 0){
 				header("Location: index.php");
 			}else{
 				$row = mysqli_fetch_assoc($sql);
 			}
 			if(isset($_POST['save'])){
-				$autor			= mysqli_real_escape_string($con,(strip_tags($_POST["autor"],ENT_QUOTES)));//Escanpando caracteres 
-				$titulo		     = mysqli_real_escape_string($con,(strip_tags($_POST["titulo"],ENT_QUOTES)));//Escanpando caracteres 
-				$contenido	 = mysqli_real_escape_string($con,(strip_tags($_POST["contenido"],ENT_QUOTES)));//Escanpando caracteres 
-				$fecha	 = mysqli_real_escape_string($con,(strip_tags($_POST["fecha"],ENT_QUOTES)));//Escanpando caracteres 
+				$nombre		     = mysqli_real_escape_string($con,(strip_tags($_POST["nombre"],ENT_QUOTES)));//Escanpando caracteres 
+				$apellidos	 = mysqli_real_escape_string($con,(strip_tags($_POST["apellidos"],ENT_QUOTES)));//Escanpando caracteres 
+				$edad	 = mysqli_real_escape_string($con,(strip_tags($_POST["edad"],ENT_QUOTES)));//Escanpando caracteres 
+                $email	 = mysqli_real_escape_string($con,(strip_tags($_POST["email"],ENT_QUOTES)));//Escanpando caracteres 
+				$username	 = mysqli_real_escape_string($con,(strip_tags($_POST["username"],ENT_QUOTES)));//Escanpando caracteres 
 
 				
-				$update = mysqli_query($con, "UPDATE publicacion SET titulo='$titulo', contenido='$contenido', fecha='$fecha' WHERE id='$nik'") or die(mysqli_error());
+				$update = mysqli_query($con, "UPDATE usuario SET nombre='$nombre', apellidos='$apellidos', edad='$edad', email='$email', username='$username' WHERE id='$nik'") or die(mysqli_error());
 				if($update){
-					header("Location: publi_u.php?nik=".$nik."&pesan=sukses");
+					header("Location: usu_u.php?nik=".$nik."&pesan=sukses");
 				}else{
 					echo '<div class="alert alert-danger alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Error, no se pudo guardar los datos.</div>';
 				}
@@ -91,37 +92,43 @@ $usuario='juangg';
 			}
 			?>
 			<form class="form-horizontal" action="" method="post">
-			<div class="form-group">
-					<label class="col-sm-3 control-label">Id del autor</label>
+				<div class="form-group">
+					<label class="col-sm-3 control-label">Nombre</label>
 					<div class="col-sm-4">
-						<input type="text" name="autor" value="<?php echo $row ['autor']; ?>" class="form-control" placeholder="Titulo" required readonly="readonly">
+						<input type="text" name="nombre" value="<?php echo $row ['nombre']; ?>" class="form-control" placeholder="Nombre del usuario" required>
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-3 control-label">Titulo</label>
+					<label class="col-sm-3 control-label">Apellidos</label>
 					<div class="col-sm-4">
-						<input type="text" name="titulo" value="<?php echo $row ['titulo']; ?>" class="form-control" placeholder="Titulo" required>
+						<input type="text" name="apellidos" value="<?php echo $row ['apellidos']; ?>" class="form-control" placeholder="Apellidos del usuario" required>
 					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-sm-3 control-label">Contenido</label>
+                </div>
+                <div class="form-group">
+					<label class="col-sm-3 control-label">Edad</label>
 					<div class="col-sm-4">
-						<input type="text" name="contenido" value="<?php echo $row ['contenido']; ?>" class="form-control" placeholder="Contenido" required>
+						<input type="number" name="edad" value="<?php echo $row ['edad']; ?>" class="form-control" placeholder="Edad del usuario" required>
 					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-sm-3 control-label">Fecha</label>
+                </div>
+                <div class="form-group">
+					<label class="col-sm-3 control-label">Email</label>
 					<div class="col-sm-4">
-						<input type="date" name="fecha" value="<?php echo $row ['fecha']; ?>" class="input-group date form-control" placeholder="Fecha" required>
+						<input type="text" name="email" value="<?php echo $row ['email']; ?>" class="form-control" placeholder="Email del usuario" required>
+					</div>
+                </div>
+				<div class="form-group">
+					<label class="col-sm-3 control-label">Username</label>
+					<div class="col-sm-4">
+						<input type="text" name="username" value="<?php echo $row ['username']; ?>" class="form-control" placeholder="Username" required>
 					</div>
 				</div>
 			
 				<div class="form-group">
 					<label class="col-sm-3 control-label">&nbsp;</label>
 					<div class="col-sm-6">
-						<input type="submit" name="save" class="btn btn-sm btn-primary" value="Guardar datos" href="publicaciones.php">
-						<a href="publicaciones.php" class="btn btn-sm btn-danger">Cancelar</a>
-						<a href="publicaciones.php" class="btn btn-sm btn-success">Regresar</a>
+						<input type="submit" name="save" class="btn btn-sm btn-primary" value="Guardar datos" href="usuarios.php">
+						<a href="usuarios.php" class="btn btn-sm btn-danger">Cancelar</a>
+						<a href="usuarios.php" class="btn btn-sm btn-success">Regresar</a>
 					</div>
 				</div>
 			</form>

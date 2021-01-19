@@ -156,7 +156,7 @@ $usuario='juangg';
                                 <a href="mispubli_u.php?nik='.$row['id'].'" title="Editar datos" class="btn btn-secondary btn-sm"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span>Editar</a>
                             </td>
                             <td>
-								<a href="mispubli.php?aksi=delete&nik='.$row['id'].'" title="Eliminar" onclick="return confirm(\'Esta seguro de borrar los datos de la publicación con id '.$row['id'].'?\')" class="btn btn-secondary btn-sm"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>Eliminar</a>
+								<a href="mispubli.php?aksi=delete&nik='.$row['id'].'" title="Eliminar" onclick="return confirm(\'Esta seguro de borrar los datos de la publicación '.$row['titulo'].'?\')" class="btn btn-secondary btn-sm"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>Eliminar</a>
 							</td>
 						</tr>
 						';

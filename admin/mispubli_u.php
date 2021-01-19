@@ -40,13 +40,13 @@ $usuario='juangg';
                       <text class="nav-link"><?php echo "Bienvenido ".$usuario."@admin"?> </text>
                       </li>
                       <li class="nav-item active">
-                          <a class="nav-link" href="../admin/mispubli.php">Mis publicaciones <span class="sr-only">(current)</span></a>
+                          <a class="nav-link" href="../admin/publicaciones.php">Publicaciones <span class="sr-only">(current)</span></a>
                       </li>
                       <li class="nav-item active">
-                          <a class="nav-link" href="../admin/publicaciones.php">Usuarios<span class="sr-only">(current)</span></a>
+                          <a class="nav-link" href="../admin/usuarios.php">Usuarios<span class="sr-only">(current)</span></a>
                       </li>
                       <li class="nav-item active">
-                          <a class="nav-link" href="../admin/publicaciones.php">Moderadores<span class="sr-only">(current)</span></a>
+                          <a class="nav-link" href="../admin/moderadores.php">Moderadores<span class="sr-only">(current)</span></a>
                       </li>
                       <li class="nav-item active">
                         <a class="nav-link" href="../login/new.php">Log Out <span class="sr-only">(current)</span></a>
