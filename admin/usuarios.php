@@ -22,43 +22,6 @@ $usuario='juangg';
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   </head>
   <style>
-.login-form-2{
-    width: 500px;
-    padding: 40px;
-    position: absolute;
-    left: 30%;
-    background: #6730af;
-    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
-}
-.login-form-2 h3,h5{
-    text-align: center;
-    color: #fff;
-}
-.login-container form{
-    padding: 10%;
-}
-.btnSubmit
-{
-    width: 30%;
-    border-radius: 1rem;
-    padding: 1.5%;
-    border: none;
-    cursor: pointer;
-}
-.login-form-2 .btnSubmit{
-    font-weight: 600;
-    color: #6730af;
-    background-color: #fff;
-}
-.login-form-2 .ForgetPwd{
-    color: #fff;
-    font-weight: 600;
-    text-decoration: none;
-}
-.login-form-2 label{
-    text-align: center;
-    color: #fff;
-}
 .back a{
 
 color: black;
@@ -144,7 +107,7 @@ left: 30%;
 					while($row = mysqli_fetch_assoc($sql)){
 						echo '
 						<tr>
-				    <td>'.$row['nombre'].'</td>
+                            <td><a href="usu_r.php?nik='.$row['id'].'" style="color:black;"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> '.$row['nombre'].'</a></td>
                             <td>'.$row['apellidos'].'</td>
                             <td>'.$row['edad'].'</td>
                             <td>'.$row['email'].'</td>

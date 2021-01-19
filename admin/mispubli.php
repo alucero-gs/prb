@@ -92,7 +92,7 @@ $usuario='juangg';
                           <a class="nav-link" href="../admin/publicaciones.php">Publicaciones <span class="sr-only">(current)</span></a>
                       </li>
                       <li class="nav-item active">
-                          <a class="nav-link" href="../admin/publicaciones.php">Usuarios<span class="sr-only">(current)</span></a>
+                          <a class="nav-link" href="../admin/usuarios.php">Usuarios<span class="sr-only">(current)</span></a>
                       </li>
                       <li class="nav-item active">
                           <a class="nav-link" href="../admin/publicaciones.php">Moderadores<span class="sr-only">(current)</span></a>
@@ -148,7 +148,7 @@ $usuario='juangg';
 					while($row = mysqli_fetch_assoc($sql)){
 						echo '
 						<tr>
-                            <td>'.$row['titulo'].'</td>
+                            <td><a href="mispubli_r.php?nik='.$row['id'].'" style="color:black;"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> '.$row['titulo'].'</a></td>
                             <td>'.$row['contenido'].'</td>
                             <td>'.$row['fecha'].'</td>';
 						echo '
