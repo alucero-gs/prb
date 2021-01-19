@@ -59,6 +59,19 @@ $usuario='juangg';
     text-align: center;
     color: #fff;
 }
+.back a{
+
+    color: black;
+    font-family: verdana;
+    padding: 60px;
+    position: justify;
+    left: 30%;
+}
+.nueva a{
+    padding: 10px;
+    position: absolute;
+    left: 45%;
+}
 
   </style>
   <body>
@@ -76,7 +89,7 @@ $usuario='juangg';
                       <text class="nav-link"><?php echo "Bienvenido ".$usuario."@admin"?> </text>
                       </li>
                       <li class="nav-item active">
-                          <a class="nav-link" href="../admin/mispubli.php">Mis publicaciones <span class="sr-only">(current)</span></a>
+                          <a class="nav-link" href="../admin/publicaciones.php">Publicaciones <span class="sr-only">(current)</span></a>
                       </li>
                       <li class="nav-item active">
                           <a class="nav-link" href="../admin/publicaciones.php">Usuarios<span class="sr-only">(current)</span></a>
@@ -109,14 +122,14 @@ $usuario='juangg';
 					}
 				}
 			}
-		?>
+        ?>
+        <div class="back"> <a href="publicaciones.php" ><img src="../img/back.png" alt="Back">Regresar</a></div>
     <div class="container text-center" id="container5">
-      <h3>Publicaciones</h3>
+      <h3>Mis Publicaciones</h3>
     </div>
     <div class="table-responsive">
 			<table class="table table-striped table-bordered">
 				<tr>
-					<th>Usuario</th>
                     <th>Titulo</th>
                     <th>Comentario</th>
                     <th>Fecha</th>
@@ -126,8 +139,7 @@ $usuario='juangg';
 
 				<?php
                     //$sql = mysqli_query($con, "SELECT * FROM publicacion ORDER BY id ASC");
-                    $sql = mysqli_query($con, "SELECT t1.id, t1.autor, t2.username, t1.titulo, t1.contenido, t1.fecha FROM publicacion 
-                    t1 INNER JOIN usuario t2 ON t1.autor=t2.id ORDER BY t1.id ASC");
+                    $sql = mysqli_query($con, "SELECT * FROM publicacion where autor=1 ORDER BY id ASC");
                 if (!$sql || mysqli_num_rows($sql) == 0){
                     
 					echo '<tr><td colspan="8">No hay datos.</td></tr>';
@@ -136,16 +148,15 @@ $usuario='juangg';
 					while($row = mysqli_fetch_assoc($sql)){
 						echo '
 						<tr>
-							<td>'.$row['username'].'</td>
                             <td>'.$row['titulo'].'</td>
                             <td>'.$row['contenido'].'</td>
                             <td>'.$row['fecha'].'</td>';
 						echo '
 							<td>
-                                <a href="publi_u.php?nik='.$row['id'].'" title="Editar datos" class="btn btn-secondary btn-sm"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span>Editar</a>
+                                <a href="mispubli_u.php?nik='.$row['id'].'" title="Editar datos" class="btn btn-secondary btn-sm"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span>Editar</a>
                             </td>
                             <td>
-								<a href="publicaciones.php?aksi=delete&nik='.$row['id'].'" title="Eliminar" onclick="return confirm(\'Esta seguro de borrar los datos de la publicación con id '.$row['id'].'?\')" class="btn btn-secondary btn-sm"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>Eliminar</a>
+								<a href="mispubli.php?aksi=delete&nik='.$row['id'].'" title="Eliminar" onclick="return confirm(\'Esta seguro de borrar los datos de la publicación con id '.$row['id'].'?\')" class="btn btn-secondary btn-sm"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>Eliminar</a>
 							</td>
 						</tr>
 						';
@@ -154,8 +165,10 @@ $usuario='juangg';
 				}
 				?>
 			</table>
-			</div>
-
+        </div>
+        <div class="nueva">
+        <a href="mispubli_c.php" title="Nueva publicacion" class="btn btn-secondary "><span class="glyphicon glyphicon-edit" aria-hidden="true"></span>Nueva publicación</a>
+        </div>
     
     </body>
 </html>

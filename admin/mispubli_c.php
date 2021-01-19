@@ -1,13 +1,10 @@
-<?php
-include("conexion.php");
-?>
 <?php session_start();
 $usuario='juangg';
 ?>
 <!doctype html>
 <html lang="es">
 <head>
-    <title>Actualizar datos</title>
+    <title>Nuevo dato</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -21,8 +18,16 @@ $usuario='juangg';
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <style>
 		.content {
-			margin-top: 80px;
+			margin-top: 20px;
 		}
+        .back a{
+
+color: black;
+font-family: verdana;
+padding: 20px;
+position: justify;
+left: 30%;
+}
 	</style>
 </head>
   <body>
@@ -40,7 +45,7 @@ $usuario='juangg';
                       <text class="nav-link"><?php echo "Bienvenido ".$usuario."@admin"?> </text>
                       </li>
                       <li class="nav-item active">
-                          <a class="nav-link" href="../admin/publicaciones.php">Mis publicaciones <span class="sr-only">(current)</span></a>
+                          <a class="nav-link" href="../admin/mispubli.php">Mis publicaciones <span class="sr-only">(current)</span></a>
                       </li>
                       <li class="nav-item active">
                           <a class="nav-link" href="../admin/publicaciones.php">Usuarios<span class="sr-only">(current)</span></a>
@@ -57,64 +62,64 @@ $usuario='juangg';
       </div>
       <div class="jumbotron center" style="background-image: url(../img/paparazzi.jpg);">
       </div>
+      <div class="back"> <a href="mispubli.php" ><img src="../img/back.png" alt="Back">Regresar</a></div>
 <div class="container">
 		<div class="content">
-			<h2>Datos de la publicación&raquo; Editar datos</h2>
+			<h2>Mis publicaciones &raquo; Nueva publicacion</h2>
 			<hr />
-			
-			<?php
-			// escaping, additionally removing everything that could be (html/javascript-) code
-			$nik = mysqli_real_escape_string($con,(strip_tags($_GET["nik"],ENT_QUOTES)));
-			$sql = mysqli_query($con, "SELECT * FROM publicacion WHERE id='$nik'");
-			if(mysqli_num_rows($sql) == 0){
-				header("Location: index.php");
-			}else{
-				$row = mysqli_fetch_assoc($sql);
-			}
-			if(isset($_POST['save'])){
-				$titulo		     = mysqli_real_escape_string($con,(strip_tags($_POST["titulo"],ENT_QUOTES)));//Escanpando caracteres 
-				$contenido	 = mysqli_real_escape_string($con,(strip_tags($_POST["contenido"],ENT_QUOTES)));//Escanpando caracteres 
-				$fecha	 = mysqli_real_escape_string($con,(strip_tags($_POST["fecha"],ENT_QUOTES)));//Escanpando caracteres 
+            <?php
+            $db_host = "localhost";
+            $db_user = "root";
+            $db_pass = "";
+            $db_name = "proyecto";
+             
+            $con = mysqli_connect($db_host, $db_user, $db_pass, $db_name);
+             
+            if(mysqli_connect_errno()){
+                echo 'No se pudo conectar a la base de datos : '.mysqli_connect_error();
+            }
 
-				
-				$update = mysqli_query($con, "UPDATE publicacion SET titulo='$titulo', contenido='$contenido', fecha='$fecha' WHERE id='$nik'") or die(mysqli_error());
-				if($update){
-					header("Location: publi_u.php?nik=".$nik."&pesan=sukses");
-				}else{
-					echo '<div class="alert alert-danger alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Error, no se pudo guardar los datos.</div>';
-				}
+			if(isset($_POST['add'])){
+				$titulo		         = mysqli_real_escape_string($con,(strip_tags($_POST["titulo"],ENT_QUOTES)));//Escanpando caracteres 
+				$contenido	     = mysqli_real_escape_string($con,(strip_tags($_POST["contenido"],ENT_QUOTES)));//Escanpando caracteres 
+				$fecha	     = mysqli_real_escape_string($con,(strip_tags($_POST["fecha"],ENT_QUOTES)));//Escanpando caracteres 
+		
+				$cek = mysqli_query($con, "SELECT autor, titulo, contenido, fecha FROM publicacion");
+						$insert = mysqli_query($con, "INSERT INTO publicacion(autor, titulo, contenido, fecha)
+															VALUES(1, '$titulo', '$contenido', '$fecha')") or die(mysqli_error());
+						if($insert){
+							echo '<div class="alert alert-success alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Bien hecho! Los datos han sido guardados con éxito.</div>';
+						}else{
+							echo '<div class="alert alert-danger alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Error. No se pudo guardar los datos !</div>';
+						}
+
 			}
-			
-			if(isset($_GET['pesan']) == 'sukses'){
-				echo '<div class="alert alert-success alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Los datos han sido guardados con éxito.</div>';
-			}
-			?>
-			<form class="form-horizontal" action="" method="post">
+            ?>
+            <form class="form-horizontal" action="" method="post">
 				<div class="form-group">
 					<label class="col-sm-3 control-label">Titulo</label>
 					<div class="col-sm-4">
-						<input type="text" name="titulo" value="<?php echo $row ['titulo']; ?>" class="form-control" placeholder="Titulo" required>
+						<input type="text" name="titulo" class="form-control" placeholder="Insertar titulo" required>
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-sm-3 control-label">Contenido</label>
 					<div class="col-sm-4">
-						<input type="text" name="contenido" value="<?php echo $row ['contenido']; ?>" class="form-control" placeholder="Contenido" required>
+						<textarea type="text" name="contenido" class="form-control" placeholder="" required></textarea>
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-sm-3 control-label">Fecha</label>
 					<div class="col-sm-4">
-						<input type="date" name="fecha" value="<?php echo $row ['fecha']; ?>" class="input-group date form-control" placeholder="Fecha" required>
+						<input type="date" name="fecha" class="form-control" placeholder="Fecha" required>
 					</div>
 				</div>
-			
+				
 				<div class="form-group">
 					<label class="col-sm-3 control-label">&nbsp;</label>
 					<div class="col-sm-6">
-						<input type="submit" name="save" class="btn btn-sm btn-primary" value="Guardar datos" href="publicaciones.php">
-						<a href="publicaciones.php" class="btn btn-sm btn-danger">Cancelar</a>
-						<a href="publicaciones.php" class="btn btn-sm btn-success">Regresar</a>
+                    <a href="mispubli.php" class="btn btn-sm btn-danger">Cancelar</a>
+					<input type="submit" name="add" class="btn btn-sm btn-primary" value="Publicar">
 					</div>
 				</div>
 			</form>

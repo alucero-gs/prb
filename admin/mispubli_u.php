@@ -7,7 +7,7 @@ $usuario='juangg';
 <!doctype html>
 <html lang="es">
 <head>
-    <title>Actualizar datos</title>
+    <title>Actualizar publicacion</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -40,7 +40,7 @@ $usuario='juangg';
                       <text class="nav-link"><?php echo "Bienvenido ".$usuario."@admin"?> </text>
                       </li>
                       <li class="nav-item active">
-                          <a class="nav-link" href="../admin/publicaciones.php">Mis publicaciones <span class="sr-only">(current)</span></a>
+                          <a class="nav-link" href="../admin/mispubli.php">Mis publicaciones <span class="sr-only">(current)</span></a>
                       </li>
                       <li class="nav-item active">
                           <a class="nav-link" href="../admin/publicaciones.php">Usuarios<span class="sr-only">(current)</span></a>
@@ -59,7 +59,7 @@ $usuario='juangg';
       </div>
 <div class="container">
 		<div class="content">
-			<h2>Datos de la publicación&raquo; Editar datos</h2>
+			<h2>Datos de la publicación &raquo; Editar datos</h2>
 			<hr />
 			
 			<?php
@@ -79,7 +79,7 @@ $usuario='juangg';
 				
 				$update = mysqli_query($con, "UPDATE publicacion SET titulo='$titulo', contenido='$contenido', fecha='$fecha' WHERE id='$nik'") or die(mysqli_error());
 				if($update){
-					header("Location: publi_u.php?nik=".$nik."&pesan=sukses");
+					header("Location: mispubli_u.php?nik=".$nik."&pesan=sukses");
 				}else{
 					echo '<div class="alert alert-danger alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Error, no se pudo guardar los datos.</div>';
 				}
@@ -112,9 +112,9 @@ $usuario='juangg';
 				<div class="form-group">
 					<label class="col-sm-3 control-label">&nbsp;</label>
 					<div class="col-sm-6">
-						<input type="submit" name="save" class="btn btn-sm btn-primary" value="Guardar datos" href="publicaciones.php">
-						<a href="publicaciones.php" class="btn btn-sm btn-danger">Cancelar</a>
-						<a href="publicaciones.php" class="btn btn-sm btn-success">Regresar</a>
+						<input type="submit" name="save" class="btn btn-sm btn-primary" value="Guardar datos" href="mispubli.php">
+						<a href="mispubli.php" class="btn btn-sm btn-danger">Cancelar</a>
+						<a href="mispubli.php" class="btn btn-sm btn-success">Regresar</a>
 					</div>
 				</div>
 			</form>
