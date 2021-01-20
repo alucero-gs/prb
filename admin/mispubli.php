@@ -52,7 +52,7 @@ $usuario='Richard';
                       <text class="nav-link"><?php echo "Bienvenido ".$usuario."@moderador"?> </text>
                       </li>
                       <li class="nav-item active">
-                          <a class="nav-link" href="../admin/publicacionesmo.php">Publicaciones <span class="sr-only">(current)</span></a>
+                          <a class="nav-link" href="../admin/publicacionmo.php">Publicaciones <span class="sr-only">(current)</span></a>
                       </li>
                  
                       <li class="nav-item active">
@@ -120,7 +120,7 @@ $usuario='Richard';
               </a>
               </td>
               <td>
-              <a href="eliminar.php?id=<?php echo $row['id_publicacionmo']?>" class="btn btn-danger">
+              <a href="eliminarm.php?id=<?php echo $row['id_mispubli']?>" class="btn btn-danger">
                 <i class="far fa-trash-alt">Eliminar</i>
               </a>   
             

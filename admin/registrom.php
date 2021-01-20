@@ -9,8 +9,8 @@ if (isset($_POST['registrarmo'])) {
   $email = $_POST['txtemail'];
   $username = $_POST['txtusername'];
   $contraseña= $_POST['txtcontra'];
-
-  $query = "INSERT INTO moderadores(nombre, apellido,edad,email,username,contraseña) VALUES ('$nombre', '$apellidos','$edad','$email','$username','$contraseña')";
+$num=2;
+  $query = "INSERT INTO moderadores(nombre, apellido,edad,email,username,contraseña,tipo_usu) VALUES ('$nombre', '$apellidos','$edad','$email','$username','$contraseña','$num')";
   $result = mysqli_query($conn, $query);
   if(!$result) {
     die("Query Failed.");
