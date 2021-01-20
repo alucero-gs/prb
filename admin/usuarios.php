@@ -15,7 +15,7 @@
             username
             </td>
             <td>
-            eliminar 
+            eliminar  nuevos
             </td>
 				
 		</tr>
